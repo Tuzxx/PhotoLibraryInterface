@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tuzx.demo.mapper.ImgCardMapper">
+    <select id="showAll" resultType="ImgCard">
+        select * from imgcard
+    </select>
+
+    <select id="showSomeBodyAll" parameterType="int" resultType="ImgCard">
+        select * from imgcard where uid=#{uid}
+    </select>
+
+    <insert id="postImgCard" parameterType="ImgCard">
+        insert into imgcard (uid, username, avatarUrl, content, imgUrl, likee, datee) values (#{uid}, #{username}, #{avatarUrl}, #{content}, #{imgUrl}, #{likee}, #{datee})
+    </insert>
+
+    <delete id="deleteImgCard" parameterType="int">
+        delete from imgcard where pid=${pid}
+    </delete>
+
+    <update id="incrementLike" parameterType="int">
+        update imgcard set likee=likee+1 where pid=#{pid}
+    </update>
+
+    <update id="decrementLike" parameterType="int">
+        update imgcard set likee=likee-1 where pid=#{pid}
+    </update>
+</mapper>
